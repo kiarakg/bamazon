@@ -1,30 +1,29 @@
 // Import mysql and inquirer packages
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-require("dotenv").config();
 
 // Connect to bamazonDB database
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "Kiki0601!",
     database: "bamazonDB"
 });
 
+// Connect to mysql server and sql database
 connection.connect(function(err) {
     if(err) throw err;
+    console.log("connected as id " + connection.threadId);
     start();
-})
+});
 
 // Create start function to start app
 function start() {
-    var queryString = "SELECT * FROM products";
-    connection.query(queryString, function(err, products) {
+    connection.query("SELECT * FROM bamazonDB.product", function(err, products) {
         if(err) throw err;
-        console.log('\nITEMS FOR SALE')
-        products.forEach(product => console.log('${product.product_name} || ID: ${product.item_id} || Price: $${product.price}'));
-        console.log('\n');
+        console.log(products);
+        
 
         // Create inquirer prompt
         // Ask user which product they would like to buy
@@ -71,7 +70,7 @@ function start() {
 
                 // If amount desired < stored_quantity, run an UPDATE query to update the stock_quantity value for that product
                 if (chosenProduct.stock_quantity >= parseInt(res.amount)) {
-                    var queryString = "UPDATE products SET ? WHERE";
+                    var queryString = "UPDATE bamazonDB.product SET ? WHERE";
                     connection.query(queryString,
                         [
                             {
