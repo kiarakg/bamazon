@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "Kiki0601!",
+    password: "",
     database: "bamazonDB"
 });
 
@@ -83,12 +83,12 @@ function start() {
                         function(err) {
                             if(err) throw err;
                             var total = chosenProduct * res.amount;
-                            console.log('Your total is: $${total}')
+                            console.log("Your total is: $${total}")
                         }
                     );
                 }
                 else {
-                    console.log('Insufficient Quantity!');
+                    console.log("Insufficient Quantity!");
                     start();
                 };
             });
