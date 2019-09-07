@@ -5,15 +5,15 @@ CREATE DATABASE bamazonDB;
 USE bamazonDB;
 
 CREATE TABLE product (
-    item_id INT NOT NULL AUTO_INCREMENT,
-    product_name VARCHAR (100) NOT NULL,
-    department_name VARCHAR (100) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
-    stock_quantity INT(11) NOT NULL,
-    PRIMARY KEY (item_id)
+    itemid INT NOT NULL AUTO_INCREMENT,
+    productname VARCHAR (45) NOT NULL,
+    departmentname VARCHAR (45) NOT NULL,
+    price DECIMAL(10, 4) NOT NULL,
+    stockquantity INT(10) NOT NULL,
+    PRIMARY KEY (itemid)
 );
 
-INSERT INTO product (product_name, department_name, price, stock_quantity)
+INSERT INTO product (productname, departmentname, price, stockquantity)
 VALUES
     ('Running Shoes', 'Footwear', 120, 25),
     ('Workout Gloves', 'Accessories', 25, 15),
@@ -25,3 +25,5 @@ VALUES
     ('Hoodies & Pullovers', 'Activewear', 35, 20),
     ('Socks', 'Accessories', 10, 20),
     ('Bags & Backpacks', 'Accessories', 30, 15)
+
+SELECT * FROM bamazonDB.product;
